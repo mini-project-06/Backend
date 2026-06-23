@@ -1,0 +1,37 @@
+version: 0.2
+
+# AWS CodeBuild에서 빌드 속도를 높이기 위해 Gradle 캐시를 활성화합니다.
+cache:
+  paths:
+    - '/root/.gradle/caches/**/*'
+    - '/root/.gradle/wrapper/**/*'
+
+phases:
+  install:
+    runtime-versions:
+      # 프로젝트의 Java 17 버전에 맞게 Amazon Corretto 17을 설정합니다.
+      java: corretto17
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase - preparing environment..."
+      # gradlew 실행 권한을 부여합니다. (Git에서 실행 권한이 누락된 경우를 방지)
+      - chmod +x ./gradlew
+
+  build:
+    commands:
+      - echo "Build phase - compiling project..."
+      # Spring Boot 프로젝트를 빌드합니다. 
+      # (만약 테스트 코드가 없거나, 외부 DB 연동 오류 등으로 테스트를 생략하려면 './gradlew build -x test' 로 수정하세요)
+      - ./gradlew build
+
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+
+artifacts:
+  files:
+    # 빌드 완료 후 생성된 JAR 파일을 빌드 결과물(Artifact)로 지정합니다.
+    - build/libs/*.jar
+  # 파일 경로(build/libs/)를 제외하고 JAR 파일만 압축 파일 루트에 저장합니다. (배포 시 편리함)
+  discard-paths: yes
