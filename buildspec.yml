@@ -7,11 +7,11 @@ phases:
   build:
     commands:
       - echo "Building the Spring Boot project..."
-      # gradlew 실행 권한 부여
       - chmod +x ./gradlew
-      # 코드 컴파일 및 JAR 파일 생성 (-x test는 테스트 코드를 건너뛰어 빌드 실패를 방지합니다)
       - ./gradlew clean build -x test
 artifacts:
   files:
-    - build/libs/*.jar  # 빌드된 최종 JAR 파일만 가져옵니다
-  discard-paths: yes    # 폴더 구조 없이 JAR 파일만 깔끔하게 빼냅니다
+    - build/libs/*.jar
+    - appspec.yml        # (추가) 배포 설명서 챙기기
+    - scripts/**         # (추가) 실행 스크립트 챙기기
+  discard-paths: no      # (수정) 폴더 구조 유지하기 (yes -> no)

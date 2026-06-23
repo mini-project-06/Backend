@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source:  /
+    destination: /home/ubuntu/bookserver # EC2 안의 이 폴더에 압축을 풉니다.
+hooks:
+  ApplicationStart:
+    - location: scripts/start.sh  # 압축을 풀고 이 스크립트를 실행합니다.
+      timeout: 60
+      runas: ubuntu
