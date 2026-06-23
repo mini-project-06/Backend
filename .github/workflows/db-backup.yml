@@ -1,0 +1,52 @@
+name: Supabase Daily Backup
+
+on:
+  schedule:
+    # 매일 한국 시간 새벽 4시 (UTC 기준 19:00)에 자동으로 실행됩니다.
+    - cron: '0 19 * * *'
+  workflow_dispatch: # GitHub 웹 UI에서 수동으로 실행 가능한 버튼을 활성화합니다.
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL Client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl ca-certificates gnupg
+          sudo install -d /etc/apt/keyrings
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/keyrings/postgresql.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+
+      - name: Run pg_dump
+        env:
+          PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }} # GitHub Repository Secrets에서 가져옵니다.
+        run: |
+          # 백업본을 저장할 폴더가 없을 경우 생성합니다.
+          mkdir -p backups
+          
+          # pg_dump를 사용해 Supabase 데이터를 백업합니다.
+          pg_dump -h aws-1-ap-northeast-1.pooler.supabase.com \
+                  -U postgres.jvglpxrqqpnmmqzdfiqj \
+                  -d postgres \
+                  -F p \
+                  -f backups/backup-$(date +%Y%m%d-%H%M%S).sql
+
+      - name: Commit & Push Backup File
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add backups/
+          
+          # 백업 파일 변경사항이 있을 때만 커밋 및 푸시를 실행합니다.
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: Auto-backup Supabase DB $(date +%Y-%m-%d)"
+            git push
+          else
+            echo "No changes in database backup."
+          fi

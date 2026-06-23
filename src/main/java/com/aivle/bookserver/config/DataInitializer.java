@@ -1,0 +1,124 @@
+package com.aivle.bookserver.config;
+
+import com.aivle.bookserver.book.Book;
+import com.aivle.bookserver.book.BookRepository;
+import com.aivle.bookserver.review.Review;
+import com.aivle.bookserver.review.ReviewRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+
+@Component
+@RequiredArgsConstructor
+public class DataInitializer implements ApplicationRunner {
+
+    private final BookRepository bookRepository;
+    private final ReviewRepository reviewRepository;
+
+    @Override
+    public void run(ApplicationArguments args) {
+        if (bookRepository.count() > 0) return;
+
+        // ── Books ──────────────────────────────────────────────────────
+        bookRepository.save(Book.builder().title("우리가 빛의 속도로 갈 수 없다면").author("김초엽").content("한국 SF의 우아한 계보, 김초엽 첫 소설집. 슬픔과 경이가 교차하는 아름다운 세계.").category("800 문학").coverImageUrl("/bookimg/book_1.png").avgRating(4.5).ratePoint(4.3).reviewCount(8).createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).updatedAt(LocalDateTime.parse("2026-05-26T05:20:57")).build());
+        bookRepository.save(Book.builder().title("코스모스").author("칼 세이건").content("우주의 신비와 인류의 기원을 탐구하는 현대 천문학의 고전. 별빛을 쫓는 인간의 위대한 여정.").category("400 자연과학").coverImageUrl("/bookimg/book_2.png").avgRating(4.6).ratePoint(4.4).reviewCount(12).createdAt(LocalDateTime.parse("2026-05-02T11:30:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("클린 코드 (Clean Code)").author("로버트 C. 마틴").content("애자일 소프트웨어 장인 정신. 깨끗하고 유지보수하기 쉬운 코드를 작성하는 방법과 원칙.").category("500 기술과학").coverImageUrl("/bookimg/book_3.png").avgRating(4.0).ratePoint(4.0).reviewCount(5).createdAt(LocalDateTime.parse("2026-05-05T09:15:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("모던 자바스크립트 Deep Dive").author("이웅모").content("자바스크립트의 핵심 개념과 동작 원리를 깊이 있게 파헤치는 완벽 가이드.").category("500 기술과학").coverImageUrl("/bookimg/book_4.png").avgRating(4.4).ratePoint(4.2).reviewCount(5).createdAt(LocalDateTime.parse("2026-05-10T14:20:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("사피엔스").author("유발 하라리").content("유인원에서 사이보그까지, 인간 역사의 대담하고 위대한 질문. 인류의 과거와 미래를 조망한다.").category("300 사회과학").coverImageUrl("/bookimg/book_5.png").avgRating(4.2).ratePoint(4.1).reviewCount(5).createdAt(LocalDateTime.parse("2026-05-12T16:45:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("미움받을 용기").author("기시미 이치로, 고가 후미타케").content("자유롭고 행복한 삶을 위한 아들러 심리학의 가르침. 타인의 시선에서 벗어나 내 삶을 사는 법.").category("100 철학").coverImageUrl("/bookimg/book_6.png").avgRating(3.8).ratePoint(3.9).reviewCount(4).createdAt(LocalDateTime.parse("2026-05-18T08:00:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("나미야 잡화점의 기적").author("히가시노 게이고").content("시간을 뛰어넘어 전해지는 따뜻한 고민 상담. 기적이 일어나는 낡은 잡화점 이야기.").category("800 문학").coverImageUrl("/bookimg/book_7.png").avgRating(4.5).ratePoint(4.2).reviewCount(6).createdAt(LocalDateTime.parse("2026-05-19T10:20:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("돈의 속성").author("김승호").content("최상위 부자가 말하는 돈에 대한 모든 것. 경제적 자유를 위한 지침서.").category("300 사회과학").coverImageUrl("/bookimg/book_8.png").avgRating(3.3).ratePoint(3.7).reviewCount(3).createdAt(LocalDateTime.parse("2026-05-20T11:00:00")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("지적 대화를 위한 넓고 얕은 지식").author("채사장").content("역사, 경제, 정치, 사회, 윤리 전 과정을 아우르는 현대인을 위한 교양서.").category("000 총류").coverImageUrl("/bookimg/book_9.png").avgRating(4.0).ratePoint(4.0).reviewCount(4).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("백과사전의 역사").author("알렉산더").content("지식을 모으고자 했던 인류의 거대한 열망, 백과사전의 탄생과 발전.").category("000 총류").coverImageUrl("/bookimg/book_10.png").avgRating(3.0).ratePoint(3.7).reviewCount(2).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("소크라테스의 변명").author("플라톤").content("철학의 아버지 소크라테스가 법정에서 자신의 철학과 삶을 변호한 위대한 고전.").category("100 철학").coverImageUrl("/bookimg/book_11.png").avgRating(4.0).ratePoint(4.0).reviewCount(3).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("오두막").author("윌리엄 폴 영").content("거대한 슬픔을 치유하는 특별한 주말. 전 세계 수천만 명을 울린 영적 치유 소설.").category("200 종교").coverImageUrl("/bookimg/book_12.png").avgRating(3.5).ratePoint(3.8).reviewCount(2).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("종교의 의미").author("카렌 암스트롱").content("인류 역사와 함께해온 종교의 본질과 역할에 대한 깊이 있는 통찰.").category("200 종교").coverImageUrl("/bookimg/book_13.png").avgRating(3.5).ratePoint(3.8).reviewCount(2).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("이기적 유전자").author("리처드 도킨스").content("진화론의 새로운 패러다임을 제시한 현대 생물학의 명저. 인간은 유전자의 생존 기계인가?").category("400 자연과학").coverImageUrl("/bookimg/book_14.png").avgRating(4.0).ratePoint(4.0).reviewCount(3).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("반 고흐, 영혼의 편지").author("빈센트 반 고흐").content("태양의 화가 빈센트 반 고흐가 동생 테오와 주고받은 편지들을 통해 그의 예술에 대한 뜨거운 열정과 삶의 애환을 고스란히 보여주는 에세이.").category("600 예술").coverImageUrl("/bookimg/book_15.png").avgRating(4.0).ratePoint(4.0).reviewCount(2).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("방구석 미술관").author("조원재").content("가볍고 편안하게 즐기는 미술 이야기. 거장들의 숨겨진 뒷이야기와 작품의 매력.").category("600 예술").coverImageUrl("/bookimg/book_16.png").avgRating(4.3).ratePoint(4.1).reviewCount(4).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("언어의 온도").author("이기주").content("말과 글에는 나름의 온도가 있다. 일상에서 건져 올린 따뜻한 말의 위로.").category("700 언어").coverImageUrl("/bookimg/book_17.png").avgRating(3.3).ratePoint(3.7).reviewCount(3).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("라틴어 수업").author("한동일").content("언어를 통해 배우는 삶의 태도. 명문대 학생들을 사로잡은 명강의.").category("700 언어").coverImageUrl("/bookimg/book_18.png").avgRating(4.0).ratePoint(4.0).reviewCount(3).createdAt(LocalDateTime.parse("2026-05-22T06:49:04")).updatedAt(LocalDateTime.parse("2026-05-26T04:22:40")).build());
+        bookRepository.save(Book.builder().title("아르테미스").author("김겨우살이").content("아르테미스 2명").category("800 문학").coverImageUrl("").avgRating(0.0).ratePoint(0.0).reviewCount(0).createdAt(LocalDateTime.parse("2026-05-27T04:18:43")).updatedAt(LocalDateTime.parse("2026-05-27T04:20:38")).build());
+
+        // ── Reviews ────────────────────────────────────────────────────
+        reviewRepository.save(Review.builder().bookId(1L).nickname("별빛소설가").password("123").rating(5).content("단편 하나하나가 지닌 따뜻함과 쓸쓸함의 정서가 너무 아름답습니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("우주여행자").password("123").rating(5).content("SF라는 장르를 통해 인간의 본질과 관계를 이렇게 우아하게 풀어내다니 감탄스럽네요.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("책읽는고양이").password("123").rating(4).content("슬프면서도 경이로운 이야기들입니다. 작가님의 다음 책이 정말 기대되네요.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("銀河수필터").password("123").rating(5).content("순례자들은 왜 돌아오지 않는가 읽고 밤새 울었습니다. 최고의 SF 소설집입니다.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("미래의빛").password("123").rating(5).content("과학적 상상력과 인문학적 감수성이 완벽하게 결합된 소설집입니다. 강추합니다.").createdAt(LocalDateTime.parse("2026-05-09T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("감성독서가").password("123").rating(4).content("외롭고도 따뜻한 SF 소설. 읽는 내내 몽환적인 분위기에 푹 빠져 있었습니다.").createdAt(LocalDateTime.parse("2026-05-11T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("이과생").password("123").rating(3).content("문장과 감성은 참 좋은데, 과학적 설정 오류나 개연성이 떨어지는 부분이 보여서 약간 몰입이 깨지네요.").createdAt(LocalDateTime.parse("2026-05-13T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(1L).nickname("미래").password("123").rating(5).content("너무 재밌어요").createdAt(LocalDateTime.parse("2026-05-26T06:32:34")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("칼세이건바라기").password("123").rating(5).content("우주의 크기 앞에서 인간이 얼마나 작고 소중한 존재인지 깨닫게 해주는 최고의 교양서.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("스타게이저").password("123").rating(5).content("두꺼운 벽돌책이지만 한 페이지 한 페이지가 문학작품처럼 아름답게 서술되어 있어 읽기 좋았습니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("과학의눈").password("123").rating(5).content("인류 역사상 가장 위대한 과학 교양서 중 하나. 과학에 관심이 없다면 꼭 읽어봐야 할 필독서.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("코스모너트").password("123").rating(4).content("방대한 지식과 철학적인 성찰이 돋보입니다. 평생 소장하며 두고두고 읽고 싶네요.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("안드로메다").password("123").rating(5).content("칼 세이건의 통찰력에 다시 한 번 감탄합니다. 우주를 보는 시선이 완전히 달라졌습니다.").createdAt(LocalDateTime.parse("2026-05-09T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("보이저호").password("123").rating(5).content("우리가 어디서 왔고 어디로 가는지에 대한 거대한 이정표를 보여주는 책.").createdAt(LocalDateTime.parse("2026-05-11T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("창백한푸른점").password("123").rating(5).content("지구라는 창백한 푸른 점이 얼마나 고귀하고 지켜야 할 가치가 있는지 알게 되었습니다.").createdAt(LocalDateTime.parse("2026-05-13T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("천체망원경").password("123").rating(4).content("우주 과학 지식뿐만 아니라 역사, 철학, 인류학이 모두 융합된 최고의 명저입니다.").createdAt(LocalDateTime.parse("2026-05-15T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("초신성").password("123").rating(5).content("인류의 과학적 여정을 한 편의 서사시처럼 엮어낸 칼 세이건의 필력에 감동했습니다.").createdAt(LocalDateTime.parse("2026-05-17T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("성운필터").password("123").rating(5).content("청소년기뿐만 아니라 성인이 되어서 읽어도 늘 새로운 영감을 주는 책.").createdAt(LocalDateTime.parse("2026-05-19T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("은하철도").password("123").rating(4).content("천문학의 세계를 이렇게 아름답고 로맨틱하게 묘사한 책은 또 없을 것입니다.").createdAt(LocalDateTime.parse("2026-05-21T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(2L).nickname("수면제").password("123").rating(3).content("명작이라서 샀는데 너무 지루하고 진도가 안 나가요... 잠 안 올 때 읽기 딱 좋습니다.").createdAt(LocalDateTime.parse("2026-05-23T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(3L).nickname("코딩꿈나무").password("123").rating(5).content("좋은 코드란 무엇인가에 대해 깊이 고민하게 만드네요. 주니어가 꼭 읽어야 할 필독서!").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(3L).nickname("코드마스터").password("123").rating(4).content("실무에서 리팩토링할 때 엄청나게 도움이 됩니다. 예제 코드가 자바 위주라 아쉽지만 원칙은 동일하네요.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(3L).nickname("버그사냥꾼").password("123").rating(5).content("설계부터 네이밍까지 디테일한 팁이 가득합니다. 개발자들의 바이블이라 불리는 이유가 있네요.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(3L).nickname("JS데브").password("123").rating(4).content("가독성 높은 코드를 만들기 위해 늘 곁에 두고 참조하고 있습니다. 기본기를 다지기에 최고입니다.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(3L).nickname("자바극혐").password("123").rating(2).content("코드가 너무 자바(Java) 중심적이고 옛날 스타일 규칙이 많아서 현대적인 JS/TS 프레임워크 실무에는 안 맞는 내용도 꽤 되네요.").createdAt(LocalDateTime.parse("2026-05-09T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(4L).nickname("프론트초보").password("123").rating(5).content("자바스크립트 바이블입니다. 원리부터 설명해줘서 이해가 정말 잘 돼요.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(4L).nickname("개발자지망생").password("123").rating(4).content("내용은 너무 좋은데 진짜 두껍고 무겁습니다. 그래도 소장 가치는 100%!").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(4L).nickname("리액트조아").password("123").rating(5).content("자바스크립트를 제대로 이해하지 못하고 리액트를 썼다는 걸 깨닫게 해준 고마운 책입니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(4L).nickname("웹마스터").password("123").rating(5).content("동작 원리를 그림과 상세한 설명으로 파헤쳐 주니까 가려운 곳이 싹 긁히는 기분이에요.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(4L).nickname("종이베개").password("123").rating(3).content("내용은 꼼꼼하지만 입문자가 읽기에는 너무 불친절하고 지엽적인 문법 설명이 많아서 금방 지칩니다. 책도 너무 무거워요.").createdAt(LocalDateTime.parse("2026-05-09T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(5L).nickname("역사탐험가").password("123").rating(5).content("인류가 어떻게 지구의 지배자가 되었는지에 대한 거대한 시나리오. 통념을 깨는 통찰이 번뜩입니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(5L).nickname("하라리러버").password("123").rating(5).content("농업혁명이 역사상 가장 거대한 사기극이었다는 관점은 정말 신선하고 충격적이었습니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(5L).nickname("호모사피엔스").password("123").rating(4).content("역사와 인류학을 종횡무진하는 이야기 전개가 흥미진진합니다. 다소 냉소적인 면도 있지만 명작입니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(5L).nickname("미래예측").password("123").rating(5).content("인류의 기원부터 미래상까지 한눈에 조망할 수 있는 멋진 책입니다. 지적 자극이 엄청납니다.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(5L).nickname("너무비약적").password("123").rating(2).content("농업혁명이나 인류사에 대한 저자의 자의적이고 극단적인 해석이 많아 다소 불편했습니다. 검증 안 된 가설이 팩트처럼 쓰여있네요.").createdAt(LocalDateTime.parse("2026-05-09T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(6L).nickname("아들러학파").password("123").rating(4).content("인간관계의 모든 고민은 과제의 분리에서 시작된다는 말이 마음을 울렸습니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(6L).nickname("힐러").password("123").rating(5).content("남들의 이목에 신경 쓰느라 나 자신을 잃어버렸던 사람들에게 강력하게 추천하고 싶은 책입니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(6L).nickname("자유로운영혼").password("123").rating(4).content("대화체 형식이라 술술 읽힙니다. 결국 행복은 내 선택에 달렸다는 교훈을 주네요.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(6L).nickname("현실도피").password("123").rating(2).content("이론은 그럴싸하지만 현실의 복잡한 인간관계나 구조적 문제를 다 개인의 용기 탓으로 돌리는 것 같아 가스라이팅처럼 느껴집니다.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(7L).nickname("밤도깨비").password("123").rating(5).content("밤새서 다 읽었습니다. 마음이 따뜻해지는 기적 같은 이야기들입니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(7L).nickname("추리매니아").password("123").rating(5).content("히가시노 게이고의 서술 트릭과 짜임새 있는 플롯이 돋보입니다. 감동까지 완벽해요.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(7L).nickname("마음치유").password("123").rating(4).content("서로 다른 고민 상담 편지들이 유기적으로 연결되는 전개가 흥미로웠습니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(7L).nickname("라떼는말야").password("123").rating(5).content("따뜻한 위로와 휴머니즘이 넘쳐나는 명작입니다. 영화도 찾아봐야겠어요.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(7L).nickname("책벌레").password("123").rating(5).content("소소한 일상 속의 작은 기적들이 큰 감동을 줍니다. 읽고 나면 마음이 맑아집니다.").createdAt(LocalDateTime.parse("2026-05-09T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(7L).nickname("진부함").password("123").rating(3).content("초반엔 재밌었는데 뒤로 갈수록 너무 우연에 기대는 억지 감동 신파극 같아서 뻔했습니다.").createdAt(LocalDateTime.parse("2026-05-11T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(8L).nickname("자본주의러버").password("123").rating(4).content("돈을 인격체로 대하라는 조언이 인상 깊었습니다. 투자 이전에 삶의 자세를 배우는 책입니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(8L).nickname("파이어족").password("123").rating(4).content("부자가 되기 위해 지녀야 할 마인드셋을 군더더기 없이 깔끔하게 짚어줍니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(8L).nickname("뻔한소리").password("123").rating(2).content("유튜브나 자기계발 블로그에서 흔히 볼 수 있는 뻔하고 당연한 조언들의 짜깁기 느낌이라 실망했습니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(9L).nickname("교양초보").password("123").rating(4).content("세상을 이해하는 뼈대를 세우기에 이보다 좋은 책은 없는 것 같습니다. 대화의 깊이가 달라집니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(9L).nickname("채사장팬").password("123").rating(5).content("역사부터 사회, 경제까지 복잡한 개념들을 아주 쉽고 명쾌하게 정리해 줍니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(9L).nickname("지식탐구자").password("123").rating(4).content("넓고 얕게 시작해서 깊이 있는 탐구로 나아갈 수 있는 훌륭한 길잡이 도서입니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(9L).nickname("진짜얕음").password("123").rating(3).content("말 그대로 지식이 너무 얕아서 이미 상식이 있는 사람이 읽기엔 시간이 아까울 정도입니다.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(10L).nickname("지식수집가").password("123").rating(4).content("지식의 체계화라는 거대한 열망이 담긴 역사. 학술적인 흥미가 깊으신 분들에게 추천합니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(10L).nickname("지루함의극치").password("123").rating(2).content("논문 수준으로 지루하고 나열식이라 일반인이 흥미로 읽기에는 너무나 딱딱합니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(11L).nickname("철학탐구").password("123").rating(5).content("악법도 법이라는 말이 오해였다는 걸 알았네요. 진리와 지혜를 좇는 소크라테스의 자세에 숙연해집니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(11L).nickname("플라톤의동굴").password("123").rating(4).content("얇지만 그 생각의 무게는 결코 가볍지 않은 영원한 고전입니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(11L).nickname("가독성꽝").password("123").rating(3).content("번역투가 너무 매끄럽지 못하고 문장이 꼬여 있어서 고전의 감동을 느끼기도 전에 머리가 아픕니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(12L).nickname("상처 치유").password("123").rating(5).content("절망 속에서 만나는 하나님의 사랑과 치유의 메시지. 기독교적인 배경을 떠나 따뜻한 위로가 됩니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(12L).nickname("종교강요").password("123").rating(2).content("치유 소설인 줄 알았는데 너무 노골적인 기독교적 교리 전파와 설교가 들어있어서 비기독교인으로서 거부감이 심했습니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(13L).nickname("비교종교학").password("123").rating(4).content("종교가 인류 문명사에서 어떤 심리적, 사회적 욕구를 채워주었는지 중립적으로 분석한 명작.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(13L).nickname("난해함").password("123").rating(3).content("내용이 너무 방대하고 학술적 용어가 남발되어서 전공자가 아니면 완독하기 어려울 정도로 가독성이 나쁩니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(14L).nickname("다윈주의자").password("123").rating(5).content("생명체를 유전자의 생존 기계로 바라보는 냉철한 시각. 진화론적 관점을 완전히 넓혀줍니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(14L).nickname("이성주의자").password("123").rating(4).content("충격적이면서도 정교한 논리 전개가 돋보입니다. 과학적 상식을 풍부하게 만들어 줍니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(14L).nickname("우울해짐").password("123").rating(3).content("과학적인 설명은 뛰어나지만, 인간을 단지 유전자의 생존 기계로 묘사하는 환원주의적 시각이 읽는 내내 불쾌하고 허무함을 유발하네요.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(15L).nickname("해바라기").password("123").rating(5).content("그의 편지를 읽으며 그림을 보니 고흐의 외로움과 예술을 향한 열정이 고스란히 전해집니다.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(15L).nickname("반복적인내용").password("123").rating(3).content("고흐의 일생을 알 수 있는 건 좋지만 편지글이라 비슷비슷한 하소연과 돈 달라는 내용이 반복되어 뒤로 갈수록 루즈해집니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(16L).nickname("아트러버").password("123").rating(5).content("미술관 도슨트의 설명을 듣는 것처럼 재밌고 생생하게 읽었습니다. 화가들의 비하인드가 꿀잼이에요.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(16L).nickname("전시회투어").password("123").rating(4).content("어렵게 느껴지던 미술 감상이 이 책 덕분에 한층 가벼워지고 친근해졌습니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(16L).nickname("반고흐").password("123").rating(5).content("예술가들의 삶을 깊이 이해하니 그들의 작품이 전혀 다르게 보이기 시작합니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(16L).nickname("가벼움").password("123").rating(3).content("예술가들의 자극적인 야사나 사생활에만 치중한 느낌이라, 미술사 자체를 깊이 있게 배우고 싶었던 사람에겐 영양가가 적습니다.").createdAt(LocalDateTime.parse("2026-05-07T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(17L).nickname("위로의말").password("123").rating(4).content("지친 마음에 따뜻한 위로가 되는 에세이입니다. 내 언어의 온도도 되돌아보게 하네요.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(17L).nickname("따뜻한커피").password("123").rating(4).content("가볍게 읽기 좋고 문장이 유려합니다. 바쁜 일상 속에서 잠깐의 쉼표가 되어 줍니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(17L).nickname("감성과잉").password("123").rating(2).content("인스타 감성의 오글거리는 예쁜 문장만 가득할 뿐, 정작 깊이 있는 성찰이나 알맹이가 없어서 아쉬운 에세이입니다.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(18L).nickname("인생수업").password("123").rating(5).content("라틴어라는 언어의 껍질을 빌려 삶과 인간에 대해 성찰하게 하는 깊은 울림의 명강의.").createdAt(LocalDateTime.parse("2026-05-01T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(18L).nickname("배움의즐거움").password("123").rating(4).content("단순 언어 공부가 아니라 품격 있는 삶을 배우는 인문학 도서입니다.").createdAt(LocalDateTime.parse("2026-05-03T10:00:00")).build());
+        reviewRepository.save(Review.builder().bookId(18L).nickname("훈계조").password("123").rating(3).content("라틴어 어원에 대한 학습보다 저자 본인의 꼰대스러운 훈계나 자아성찰 얘기가 비중을 더 많이 차지해서 실망스럽네요.").createdAt(LocalDateTime.parse("2026-05-05T10:00:00")).build());
+    }
+}
