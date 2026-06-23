@@ -1,6 +1,7 @@
 server:
   port: ${SERVER_PORT:8080}
-
+  servlet: # 추가: 서블릿 설정
+    context-path: /api     # 추가: 모든 API 앞에 /api 강제 적용
 
 spring:
   config:
