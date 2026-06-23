@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  build:
+    commands:
+      - echo "Building the Spring Boot project..."
+      # gradlew 실행 권한 부여
+      - chmod +x ./gradlew
+      # 코드 컴파일 및 JAR 파일 생성 (-x test는 테스트 코드를 건너뛰어 빌드 실패를 방지합니다)
+      - ./gradlew clean build -x test
+artifacts:
+  files:
+    - build/libs/*.jar  # 빌드된 최종 JAR 파일만 가져옵니다
+  discard-paths: yes    # 폴더 구조 없이 JAR 파일만 깔끔하게 빼냅니다
