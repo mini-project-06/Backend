@@ -9,6 +9,7 @@ phases:
       - echo "Building the Spring Boot project..."
       - chmod +x ./gradlew
       - ./gradlew clean build -x test
+      - rm build/libs/*-plain.jar
 artifacts:
   files:
     - build/libs/*.jar
