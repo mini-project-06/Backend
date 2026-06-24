@@ -1,16 +1,12 @@
-version: 0.0
+#!/bin/bash
 
-os: linux
+PID=$(pgrep -f 'bookserver-0.0.1-SNAPSHOT.jar')
 
-files:
-  - source: /
-    destination: /home/ec2-user/app
+if [ -n "$PID" ]; then
+  echo "Stopping application. PID=$PID"
+  kill -15 $PID
+else
+  echo "No running application found."
+fi
 
-hooks:
-  ApplicationStop:
-    - location: scripts/stop.sh
-      timeout: 60
-
-  ApplicationStart:
-    - location: scripts/start.sh
-      timeout: 60
+exit 0
