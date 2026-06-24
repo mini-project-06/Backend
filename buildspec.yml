@@ -10,3 +10,5 @@ phases:
 artifacts:
   files:
     - 'build/libs/*.jar'
+    - 'appspec.yml'
+    - 'scripts/**/*'
