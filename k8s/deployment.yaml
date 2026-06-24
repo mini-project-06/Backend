@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bookserver
-        image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/user112-bookapp-backend:c7f426545bae
+        image: 416225317325.dkr.ecr.ap-southeast-2.amazonaws.com/user112-bookapp-backend:f69820bd8e12
         imagePullPolicy: Always
         envFrom:
         - secretRef:
