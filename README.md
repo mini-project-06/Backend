@@ -245,3 +245,4 @@ git clone [https://github.com/Jiae-Ham/AivleSchool_miniproj4.git](https://github
 **4. 접속**
 
 - 브라우저에서 `http://localhost:5173` 으로 접속하여 서비스를 이용합니다.
+- 테스트
