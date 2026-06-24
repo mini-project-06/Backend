@@ -10,4 +10,13 @@ if [ -z "$JAR_FILE" ]; then
   exit 1
 fi
 
+export SUPABASE_DB_PASSWORD=$(aws ssm get-parameter \
+  --name "/user104/supabase/password" \
+  --with-decryption \
+  --query "Parameter.Value" \
+  --output text \
+  --region ap-southeast-2)
+
+echo "SUPABASE_DB_PASSWORD loaded"
+
 nohup java -jar "$JAR_FILE" > "$APP_DIR/app.log" 2>&1 &
