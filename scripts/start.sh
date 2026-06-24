@@ -1,7 +1,8 @@
 #!/bin/bash
 
-cd /home/ec2-user/app
+APP_DIR=/home/ec2-user/app
+JAR_FILE=$(ls $APP_DIR/build/libs/*SNAPSHOT.jar | grep -v plain | head -n 1)
 
-JAR_NAME=$(ls *.jar | tail -n 1)
+echo "JAR_FILE=$JAR_FILE"
 
-nohup java -jar $JAR_NAME > app.log 2>&1 &
+nohup java -jar $JAR_FILE > $APP_DIR/app.log 2>&1 &
