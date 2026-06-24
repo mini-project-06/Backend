@@ -10,7 +10,7 @@ spring:
     name: bookserver
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres?sslmode=require
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require
     username: postgres.pkyisicmromzdocqxwgc
     password: ${SUPABASE_DB_PASSWORD} # 로컬 환경변수(SUPABASE_DB_PASSWORD)로 주입하세요. (Git 노출 방지)
     hikari:
