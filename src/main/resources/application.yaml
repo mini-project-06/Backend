@@ -1,7 +1,5 @@
 server:
   port: ${SERVER_PORT:8080}
-  servlet: # 추가: 서블릿 설정
-    context-path: /api     # 추가: 모든 API 앞에 /api 강제 적용
 
 spring:
   config:
@@ -11,11 +9,11 @@ spring:
     name: bookserver
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres?sslmode=require
-    username: postgres.jvglpxrqqpnmmqzdfiqj
-    password: ${SUPABASE_DB_PASSWORD} # 로컬 환경변수(SUPABASE_DB_PASSWORD)로 주입하세요. (Git 노출 방지)
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres?sslmode=require&prepareThreshold=0
+    username: postgres.pkyisicmromzdocqxwgc
+    password: ${SUPABASE_DB_PASSWORD}
     hikari:
-      maximum-pool-size: 1 # 7명 이상 동시에 띄울 수 있도록 각 인원당 커넥션 개수를 1개로 제한합니다. (최대 15명 접속 가능)
+      maximum-pool-size: 1
   jpa:
     hibernate:
       ddl-auto: validate
@@ -27,4 +25,3 @@ spring:
 
 openai:
   api-key: ${OPENAI_API_KEY:}
-
