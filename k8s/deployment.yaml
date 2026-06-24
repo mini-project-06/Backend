@@ -23,6 +23,8 @@ spec:
         - secretRef:
             name: bookserver-env
         env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: ""
         - name: SERVER_SERVLET_CONTEXT_PATH
           value: /api
         ports:
