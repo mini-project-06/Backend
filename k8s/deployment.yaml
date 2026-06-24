@@ -25,6 +25,10 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: ""
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres?sslmode=require"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "postgres.pkyisicmromzdocqxwgc"
         - name: SERVER_SERVLET_CONTEXT_PATH
           value: /api
         ports:
