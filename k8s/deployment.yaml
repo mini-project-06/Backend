@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bookserver
-  namespace: bookapp-test-test
+  namespace: bookapp-test2
 spec:
   replicas: 2
   selector:
